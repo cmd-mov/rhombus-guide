@@ -1,0 +1,47 @@
+#lang rhombus
+
+List.length(["a", "b", "c"])
+
+namespace geometry:
+  export:
+    tau
+    Complex
+  def pi = 3.14
+  def tau = 2 * pi
+  class Complex(real, imag)
+
+geometry.tau
+geometry.Complex(0, geometry.tau)
+
+block:
+  import:
+    .geometry open
+  Complex(0, tau)
+
+def also_pi:
+  import:
+    .geometry open
+  tau/2
+
+also_pi
+
+namespace subject:
+  export:
+    geometry
+    english
+  namespace english:
+    export:
+      greeting
+    def greeting = "Hello"
+
+subject.english.greeting
+subject.geometry.tau
+
+block:
+  import:
+    .List open
+  length(["a", "b", "c"])
+
+block:
+  def geometry.e = 2.71
+  geometry.e

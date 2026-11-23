@@ -1,0 +1,25 @@
+#lang rhombus
+
+def mutable todays_weather = "sunny"
+todays_weather
+
+todays_weather := "rainy"
+todays_weather
+
+fun f(mutable x):
+  x := x + 8
+  x
+
+f(10)
+
+class Boxed(mutable content)
+
+def present = Boxed("socks")
+present.content
+
+present.content := "toy"
+present.content
+
+def (n, s) = values(1, "apple")
+n
+s

@@ -1,0 +1,45 @@
+#lang rhombus
+
+// class Posn(x, y)
+class Posn(x :: Int, y :: Int)
+
+def origin = Posn(1,2)
+
+origin
+
+origin.y
+
+Posn.x(origin)
+
+fun flip(p :: Posn):
+  Posn(p.y, p.x)
+
+def (flipped :~ Posn) = flip(origin)
+
+flipped
+
+fun flip_int(p :: Posn.of(Int, Int)):
+  Posn(p.y, p.x)
+
+flip_int(Posn(1,2))
+// flip_int(Posn("a", "b"))
+
+fun flip_short(Posn(x, y)):
+  Posn(y,x)
+
+flip_short(Posn(3,4))
+
+fun same_posn(p) :~ Posn:
+  p
+
+fun checked_same_posn(p) :: Posn:
+  p
+
+origin is_a Posn
+origin is_a Int
+
+class Line(p1 :: Posn, p2 :: Posn)
+def l1 :: Line:
+  Line(Posn(1,2), Posn(3,4))
+
+l1.p1.x

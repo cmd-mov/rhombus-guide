@@ -1,0 +1,43 @@
+#lang rhombus
+
+class Posn(x,y)
+
+//operator ((x :: Int) <> (y :: Int)):
+//  Posn(x, y)
+
+//1 <> 2
+
+//operator (<<>> x):
+//  Posn(x, x)
+
+//<<>> 3
+
+operator (x <<<>>>):
+  Posn(x, x)
+
+4 <<<>>>
+
+operator (x mod y):
+  x - math.floor(x / y) * y
+
+10 mod 3
+
+operator
+| ((x :: Int) <> (y :: Int)):
+    Posn(x, y)
+| (<> (x :: Int)):
+    Posn(x, x)
+| (<> "origin"):
+    Posn(0, 0)
+
+1 <> 2
+<> 3
+<> "origin"
+
+operator (x <<>> y):
+//  ~weaker_than: * / + -
+  ~weaker_than: arithmetic
+  ~associativity: ~right
+  Posn(x, y)
+
+1 <<>> 2 * 3
