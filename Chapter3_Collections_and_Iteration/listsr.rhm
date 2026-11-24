@@ -1,0 +1,68 @@
+#lang rhombus
+
+List.length(["a", "b"])
+
+["a", "b", "c"].length()
+
+["a", "b"] ++ ["c", "d"]
+
+"c" in ["a", "e", "c"]
+
+List("c", "a", "c")
+
+fun
+| classify(_ :: List): "list"
+| classify(_ :: Number): "number"
+| classify(_): "other"
+ 
+classify([1])
+classify(1)
+classify("1")
+
+fun are_three_sorted([a, b, c]):
+  a <= b && b <= c
+
+are_three_sorted([1,2,3])
+are_three_sorted([2,1,3])
+
+fun
+| starts_milk([]): #false
+| starts_milk([head, tail,...]): head == "milk"
+
+starts_milk([])
+starts_milk(["milk", "apple", "banana"])
+starts_milk(["apple", "coffee", "banana"])
+
+fun
+| got_milk([]): #false
+| got_milk([head, tail, ...]):
+    head == "milk" || got_milk([tail, ...])
+
+got_milk([])
+got_milk(["apple", "milk", "banana"])
+got_milk(["apple", "coffee", "banana"])
+
+def [grocery, ...] = ["apple", "banana", "milk"]
+[grocery, ..., "cupcake"]
+[grocery, ..., grocery, ...]
+
+def [x, & others] = [grocery, ...]
+others
+x
+["broccoli", & others ++ ["cupcake"], x]
+["broccoli", & ["a", "b"]]
+[grocery, ..., & ["pencil", "eraser"]]
+
+class Posn(x, y)
+
+fun nth_x([p :~ Posn, ...], n):
+  [p, ...][n].x
+
+nth_x([Posn(1,2), Posn(3,4), Posn(5,6)], 1)
+
+def autos = PairList["beetle", "jeep", "miata"]
+PairList.cons("cadillac", autos)
+autos is_a List
+autos is_a Listable
+[& autos]
+PairList["cadillac", & [& autos, "corvette"]]

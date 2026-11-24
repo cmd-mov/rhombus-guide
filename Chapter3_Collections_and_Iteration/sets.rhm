@@ -1,0 +1,20 @@
+#lang rhombus
+
+def friends = {"alice", "bob", "carol"}
+if "alice" in friends && "carol" in friends
+| "I know both"
+| "Who are they?"
+
+def new_friends = friends ++ {"david"}
+
+"david" in new_friends
+"david" in friends
+
+{"dennis", & friends}
+
+def [elem, ...] = ["a", "b", "a", "c", "c"]
+[elem, ...]
+{elem, ...}
+
+def {"carol", other_friends, ...} = friends
+[other_friends, ...]

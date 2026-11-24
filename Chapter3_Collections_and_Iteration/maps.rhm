@@ -1,0 +1,50 @@
+#lang rhombus
+
+class Posn(x, y)
+
+def neighborhood = Map(
+  ["alice", Posn(4,5)],
+  ["bob", Posn(7,9)],
+)
+
+neighborhood["alice"]
+"clara" in neighborhood
+"alice" in neighborhood
+
+def neighborhood2 = {
+  "alice": Posn(4, 5),
+  "bob": Posn(7, 9),
+}
+
+neighborhood2["alice"]
+neighborhood2.maybe["carol"]
+
+def new_neighborhood = neighborhood2 ++ {"alice": Posn(40, 50)}
+
+fun alice_home({"alice": p}):
+  p
+
+alice_home(new_neighborhood)
+
+fun locale(who, neighborhood :~  Map.of(String, Posn)):
+  let p = neighborhood[who]
+  p.x +& ", " +& p.y
+
+locale("alice", neighborhood)
+
+def locations = MutableMap{
+  "alice": Posn(4, 5),
+  "bob": Posn(7, 9),
+}
+
+locations["alice"] := Posn(40, 50)
+locations["alice"]
+
+def {"bob": bob_home, & others} = neighborhood
+
+others
+{& others, "clara": Posn(8, 2)}
+
+def [key, ...] = ["a", "b", "c"]
+def [val, ...] = [1, 2, 3]
+{key: val, ...}

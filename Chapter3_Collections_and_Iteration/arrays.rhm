@@ -1,0 +1,15 @@
+#lang rhombus
+
+def buckets = Array(1, 2, 3, 4)
+buckets[0]
+buckets[1] := 5
+buckets
+
+def items = MutableList(1, 2, 3, 4)
+items[0]
+items[1] := 5
+items.insert(2, 2.5)
+items.append([10, 20, 30])
+
+[& buckets]
+[& items]
