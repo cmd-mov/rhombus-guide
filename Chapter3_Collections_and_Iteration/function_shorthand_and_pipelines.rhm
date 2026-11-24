@@ -1,0 +1,18 @@
+#lang rhombus
+
+List.find([1, 3, 2], fun (x): x > 2)
+[1, 3, 2].find(fun (x): x > 2)
+[1, 3, 2].map(fun (x): x + 1)
+[1, 3, 2].sort(fun (x, y): x > y)
+
+List.find([1, 3, 2], (_ > 2))
+[1, 3, 2].sort((_ > _))
+
+[1, 3, 2].map(math.max(_, 2))
+
+[[1, 3, 2], [6, 0, 5]].map(List.sort(_, fun(x, y): x > y))
+
+[3, 1, 2]
+  |> List.sort(_)
+  |> ([0] ++ _ ++ [100])
+  |> (_.map(to_string))

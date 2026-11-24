@@ -1,0 +1,29 @@
+#lang rhombus
+
+fun naturals_from(i :: Int) :: Stream:
+  Stream.cons(i, naturals_from(i+1))
+
+def naturals = naturals_from(0)
+naturals.first
+naturals.rest.first
+naturals[11]
+
+fun remove_multiples(s :: Stream, n :: Int) :: Stream:
+  match s
+  | Stream.cons(fst, rst):
+      if fst mod n == 0
+      | remove_multiples(rst, n)
+      | Stream.cons(fst, remove_multiples(rst, n))
+
+def odds = remove_multiples(naturals, 2)
+odds[0]
+odds[11]
+
+fun primes_from(s :: Stream) :: Stream:
+  match s
+  | Stream.cons(fst, rst):
+      Stream.cons(fst, primes_from(remove_multiples(rst, fst)))
+
+def primes = primes_from(naturals.rest.rest)
+primes[0]
+primes[11]

@@ -1,0 +1,53 @@
+#lang rhombus
+
+fun add(x :~ Number, ...):
+  for values(total = 0):
+    each v in [x, ...]
+    total + v
+
+add(1, 2, 3, 4)
+def [n, ...] = [20, 30, 40]
+add(10, n, ..., 50)
+def ns = [20, 30, 40]
+add(10, & ns, 50)
+
+math.expt(& [2, 10])
+
+fun add2(& xs :~ List.of(Number)):
+  for values(total = 0):
+    each v in xs
+    total + v
+
+add2(1, 3, 5, 7)
+
+fun roster(~manager: who, ~& players):
+  players
+
+roster(~pitcher: "Dave", ~manager: "Phil", ~catcher: "Johnny")
+
+fun
+| circle_area(~radius): 2 * 3.14 * radius * radius
+| circle_area(~diameter): (1/2) * 3.14 * diameter * diameter
+
+fun
+| rectangle_area(~width, ~height): width * height
+
+fun
+| shape_area(~type: "circle", ~& props): circle_area(~& props)
+| shape_area(~type: "rectangle", ~& props): rectangle_area(~& props)
+
+shape_area(~type: "circle", ~radius: 1)
+shape_area(~type: "circle", ~diameter: 8.5)
+shape_area(~type: "rectangle", ~width: 8.5, ~height: 11)
+
+class Posn(x :: Number, y :: Number)
+
+fun
+| avg(n :: Number, & ns :~ List.of(Number)):
+    (n + add(& ns)) / (1 + List.length(ns))
+| avg(p :: Posn, & ps :~ List.of(Posn)):
+    Posn(avg(p.x, & Function.map(Posn.x, ps)),
+         avg(p.y, & Function.map(Posn.y, ps)))
+
+avg(1, 2, 6)
+avg(Posn(0, 0), Posn(1, 3), Posn(2, 0))

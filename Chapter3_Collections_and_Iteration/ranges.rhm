@@ -1,0 +1,14 @@
+#lang rhombus
+
+def natural_numbers = 0..
+5 in natural_numbers
+-5 in natural_numbers
+
+def integers = ..
+integers.encloses(natural_numbers)
+
+def less_than_five = 0..5
+def up_to_five = 0..=5
+
+[& less_than_five]
+[& up_to_five]

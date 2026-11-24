@@ -1,0 +1,64 @@
+#lang rhombus
+
+for:
+  each i in 1..4
+  println(i)
+
+for (i in 1..4):
+  println(i)
+
+for (i in 1..=4):
+  println(i)
+
+for (i in 1 <.. 4):
+  println(i)
+
+for (i in 4 >.. 1):
+  println(i)
+
+for (i in (0..4).descending()):
+  println(i)
+
+for (i in (1..10).step_by(2)):
+  println(i)
+
+for (i in (10 >=.. 1). step_by(-2)):
+  println(i)
+
+for:
+  each friend in ["Alice", "Bob", "Carol"]
+  let dear_friend = "dear " +& friend
+  each say in ["Hello", "Goodbye"]
+  println(say +& ", " +& dear_friend +& "!")
+
+for:
+  each:
+    friend in ["Alice", "Bob", "Carol"]
+    index in 1..//4
+  println(index +& ". " +& friend)
+
+for List (i in 1..4):
+  "number " +& i
+
+for List:
+  each j in [1, 2]
+  each i in ["a", "b", "c"]
+  [j, i]
+
+for Map (friend in ["alice", "bob", "carol"],
+         index in 1..):
+  values(index, friend)
+
+fun sum(ns :~ List):
+  for values(sum = 0) (n in ns):
+    sum + n
+
+sum([2, 3, 4])
+
+fun sum2d(nss :~ List.of(List.of(Number))):
+  for values(sum = 0):
+    each ns in nss
+    each n in ns
+    sum + n
+
+sum2d([[1], [2, 3, 4], [5, 6, 7], [8, 9]])
