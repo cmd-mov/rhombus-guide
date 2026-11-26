@@ -1,0 +1,20 @@
+#lang rhombus
+
+"Hello, world!"
+print("Hello, world!")
+print("Hello, world!", ~mode: #'expr)
+show("Hello, world!")
+
+print("apple")
+println(["apple", "banana"])
+
+block:
+    println("hello", "there", "world")
+    print("next")
+
+println("I have " +& (2 + 3) +& " fingers")
+
+to_string(42)
+to_string("apple")
+to_string("apple", ~mode: #'expr)
+repr("apple")

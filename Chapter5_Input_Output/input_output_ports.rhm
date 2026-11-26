@@ -1,0 +1,41 @@
+#lang rhombus
+
+print("hello\n", ~out: stderr)
+
+stdout.print("hi tere")
+
+def tmp = filesystem.make_temporary()
+def outp = Port.Output.open_file(tmp.path, ~exists: #'truncate)
+outp.write_bytes(#"data 1")
+outp.close()
+
+def inp = Port.Input.open_file(tmp.path)
+inp.read_bytes(6)
+inp.close()
+tmp.close()
+
+def tmp2 = filesystem.make_temporary()
+def outp2 = Port.Output.open_file(tmp2.path, ~exists: #'truncate)
+parameterize { Port.Output.current: outp2 }:
+  println("data 2")
+outp2.close()
+
+def inp2 = Port.Input.open_file(tmp2.path)
+parameterize { Port.Input.current: inp2 }:
+  stdin.read_line()
+inp2.close()
+tmp2.close()
+
+def tmp3 = filesystem.make_temporary()
+Port.Output.using ~file tmp3.path:
+  ~exists: #'truncate
+  println("data 3")
+Port.Input.using ~file tmp3.path:
+  stdin.read_line()
+tmp3.close()
+
+def outp4 = Port.Output.open_string()
+outp4.print("hello")
+outp4.print(" ")
+outp4.print("world")
+outp4.get_string()

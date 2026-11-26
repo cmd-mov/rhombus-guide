@@ -1,0 +1,10 @@
+#lang rhombus
+
+block:
+  Closeable.let tmp = filesystem.make_temporary()
+  block:
+    Closeable.let outp = Port.Output.open_file(tmp.path, ~exists: #'truncate)
+    outp.write_bytes(#"data")
+  block:
+    Closeable.let inp = Port.Input.open_file(tmp.path)
+    inp.read_bytes(4)
