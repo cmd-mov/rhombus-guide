@@ -1,0 +1,10 @@
+#lang rhombus
+
+class Posn(x, y):
+  fun get_origin():
+    Posn(0, 0)
+  export:
+    get_origin
+
+Posn.get_origin()
+

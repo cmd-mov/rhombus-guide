@@ -1,0 +1,45 @@
+#lang rhombus
+
+class Posn(~x: x, ~y: y = x)
+Posn(~y: 2, ~x: 1)
+Posn(~x: 1)
+def Posn(~y: y1, ~x: x1) = Posn(~x: 1, ~y: 2)
+
+class Posn2(~x, ~y)
+def p = Posn2(~x: 3, ~y: 12)
+p.x
+p.y
+
+class Cell(~row: i, ~column: j)
+def c = Cell(~row: 1, ~column: 2)
+c.i
+c.j
+c
+
+class Posn3(~x, ~y):
+  nonfinal
+  constructor
+  | ():
+      super(~x: 0, ~y: 0)
+  | (~x: x, ~y: y):
+      super(~x: x, ~y: y)
+  | (~r: r, ~θ: θ):
+      super(~x: r*math.cos(θ), ~y: r*math.sin(θ))
+
+Posn3()
+Posn3(~x: 1, ~y: 2)
+Posn3(~r: 1, ~θ: 0.79)
+
+class Posn3D(~z):
+  extends Posn3
+  constructor
+  | ():
+      super()(~z: 0)
+  | (~x: x, ~y: y, ~z: z):
+      super(~x: x, ~y: y)(~z: z)
+  | (~r: r, ~θ: θ, ~φ:φ):
+      super(~r: r*math.cos(φ), ~θ:θ)(~z: r*math.sin(φ))
+
+Posn3D()
+Posn3D(~x: 1, ~y:3, ~z: 5)
+Posn3D(~r: 1, ~θ: 0.79, ~φ: 0.315)

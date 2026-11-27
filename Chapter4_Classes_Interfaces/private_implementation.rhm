@@ -1,0 +1,9 @@
+#lang rhombus
+
+class Posn(x, y):
+  private implements Printable
+  private override describe(mode, recur):
+    PrintDesc.list("(((", [recur(x), recur(y)], ")))")
+
+Posn(1, 2)
+// Posn(1, 2).describe(#'expr, Function.pass)

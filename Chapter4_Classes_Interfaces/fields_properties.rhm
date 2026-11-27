@@ -1,0 +1,29 @@
+#lang rhombus
+
+class Posn(mutable x, mutable y):
+  field name = "Joe Doe"
+  immutable dist = x+y
+  property
+  | angle :: Real:
+      math.atan(y, x)
+  | angle := new_angle :: Real:
+      let m = magnitude
+      x := m * math.cos(new_angle)
+      y := m * math.sin(new_angle)
+  property magnitude :: Real:
+    math.sqrt(x*x + y*y)
+  method go_home():
+    x := 0
+    y := 0
+
+def p = Posn(3, 4)
+p.magnitude
+p.x := 9
+p.angle
+p.angle := 0.0
+p
+p.go_home()
+p
+p.name := "Penny"
+p.name
+p.dist

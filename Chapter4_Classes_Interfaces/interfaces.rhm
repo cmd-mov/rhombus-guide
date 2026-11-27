@@ -1,0 +1,26 @@
+#lang rhombus
+
+interface Shape
+interface Dance
+class Square(side):
+  implements:
+    Shape
+    Dance
+
+def s = Square(11)
+s is_a Shape
+s is_a Dance
+
+interface MailingAddress
+interface Residence
+interface HomeAddress:
+  extends:
+    MailingAddress
+    Residence
+
+interface LawncareClient
+
+class SingleFamilyHome(street, city, state, zip):
+  implements:
+    HomeAddress
+    LawncareClient

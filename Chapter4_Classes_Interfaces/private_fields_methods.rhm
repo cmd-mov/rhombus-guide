@@ -1,0 +1,24 @@
+#lang rhombus
+
+class Car(mpg):
+  private field gas = 10
+  method go(dist):
+    gas := gas - dist/mpg
+
+def c = Car(30)
+c.go(240)
+c
+
+class Car2(make, model, private mpg):
+  private field gas: 0
+  constructor(make, model):
+    let [tank_size, mpg] = [15, 40] //lookup_specs(make, model)
+    let car = super(make, model, mpg)
+    car.gas := tank_size
+    car
+  method go(dist):
+    gas := gas - dist/mpg
+
+def c2 = Car2("Mazda", "Miata")
+c2.go(24)
+c2

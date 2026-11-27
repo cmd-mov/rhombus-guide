@@ -1,0 +1,13 @@
+#lang rhombus
+
+class Posn(x, y):
+  nonfinal
+
+class Posn3D(z):
+  extends Posn
+
+def p = Posn3D(1, 2, 3)
+
+p
+p is_a Posn
+p is_a Posn3D

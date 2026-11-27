@@ -1,0 +1,44 @@
+#lang rhombus
+
+class Posn(x, y):
+  method mdist():
+    x + y
+  method move(dx :~ Int, dy :~ Int):
+    if dx == 0 && dy == 0
+    | this
+    | Posn(x+dx, y+dy)
+
+Posn(1, 2).mdist()
+Posn(1, 2).move(0, 0)
+Posn(1, 2).move(10, -10)
+
+def p = Posn(1, 2)
+Posn.move(p, 10, -11)
+
+class Posn2(x, y):
+  nonfinal
+  method mdist():
+    x + y
+  method area():
+    0
+
+class Posn3D(z):
+  extends Posn2
+  override method mdist():
+    super.mdist() + z
+
+def p2 = Posn3D(1, 2, 3)
+p2.mdist()
+p2.area()
+
+interface Shape:
+  method area() :: Real
+  method is_empty():
+    area() == 0
+
+class Square(side):
+  implements Shape
+  override area():
+    side*side
+
+Square(0).is_empty()
